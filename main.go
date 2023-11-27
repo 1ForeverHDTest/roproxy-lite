@@ -67,7 +67,7 @@ func makeRequest(ctx *fasthttp.RequestCtx, attempt int) *fasthttp.Response {
 	req := fasthttp.AcquireRequest()
 	defer fasthttp.ReleaseRequest(req)
 	req.Header.SetMethod(string(ctx.Method()))
-	url := strings.SplitN(string(ctx.Request.Header.RequestURI())[1:], "/", 2)
+	url := strings.SplitN(string(ctx.Request.Header.RequestURI())[1:], "/", 3)
 	req.SetRequestURI("https://" + url[0] + "." + url[1] + ".com/" + url[2])
 	req.SetBody(ctx.Request.Body())
 	ctx.Request.Header.VisitAll(func (key, value []byte) {
